@@ -3,8 +3,10 @@ const app = express();
 const loginRouter = require("./routes/loginRouter")
 const registerRouter = require("./routes/registerRouter")
 const dotenv = require("dotenv")
-dotenv.config();
+const cors = require("cors");
 
+dotenv.config();
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/login',loginRouter)
