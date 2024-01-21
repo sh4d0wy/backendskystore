@@ -14,5 +14,10 @@ const registerPostController = async (req,res)=>{
         console.log(e);
     }
 }
+const registerDeleteController = async (req,res)=>{
+    await user.deleteMany({}).then(res.status(200).json({
+        "Success":"Deleted all documents"
+    }))
+}
 
-module.exports = {registerGetController,registerPostController}
+module.exports = {registerGetController,registerPostController,registerDeleteController};
