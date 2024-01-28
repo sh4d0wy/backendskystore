@@ -6,7 +6,7 @@ const sendVerificationEmail = async (email,otp)=>{
     const transporter = nodemailer.createTransport({
         host:'smtp.gmail.com',
         service: 'gmail',
-        port:'586',
+        port:'587',
         secure:'false',
         auth: {
           user: 'resetskystore@gmail.com',
@@ -32,7 +32,7 @@ const sendVerificationEmail = async (email,otp)=>{
 const forgotPasswordPostController = async (req,res)=>{
     const email = req.body.email;
     const foundUser = await user.find({email:email});
-    if(foundUser.length>0){
+    if(foundUser){
         const otp = (Math.floor(Math.random()*9000))+1000;
         await user.findOneAndUpdate({email:email},{otp:otp});
         sendVerificationEmail(email,otp);
