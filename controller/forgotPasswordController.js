@@ -32,7 +32,7 @@ const sendVerificationEmail = async (email,otp)=>{
 const forgotPasswordPostController = async (req,res)=>{
     const email = req.body.email;
     const foundUser = user.find({email:email});
-    if(foundUser){
+    if(foundUser[0]){
         const otp = (Math.floor(Math.random()*9000))+1000;
         await user.findOneAndUpdate({email:email},{otp:otp});
         sendVerificationEmail(email,otp);
