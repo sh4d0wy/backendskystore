@@ -6,7 +6,7 @@ const sendVerificationEmail = async (email,otp)=>{
     const transporter = nodemailer.createTransport({
         host:'smtp.gmail.com',
         service: 'gmail',
-        port:'587',
+        port:'586',
         secure:'false',
         auth: {
           user: 'resetskystore@gmail.com',
