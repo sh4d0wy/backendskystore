@@ -18,7 +18,8 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
     username:{type : String, required : true,unique:true},
     email:{type:String,required:true,unique:true},
-    password:{type:String,required:true}
+    password:{type:String,required:true},
+    otp:{type:Number}
 })
 
 const user = mongoose.model("user",userSchema)
