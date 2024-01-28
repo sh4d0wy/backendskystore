@@ -40,9 +40,9 @@ const forgotPasswordPostController = async (req,res)=>{
         }catch(e){
           console.log("Some error occurred ",e)
         }
-        return res.status(200).send({success:true,msg:"Please check you email"})
+        return res.status(200).send({success:"true",msg:"Please check you email"})
     }else{
-        return res.status(401).send({success:false,msg:"User Not Found"});
+        return res.status(401).send({success:"false",msg:"User Not Found"});
     }
 }
 
@@ -54,12 +54,12 @@ const forgotPasswordVerifyController = async (req,res)=>{
     if(foundUser){
       console.log(foundUser[0].otp)
         if(givenOtp == foundUser[0].otp){
-            res.status(200).send({success:true,msg:"Otp Verified"})
+            res.status(200).send({success:"true",msg:"Otp Verified"})
         }else{
-          res.status(403).json({success:false,msg:'Invalid Otp'}) 
+          res.status(403).json({success:"false",msg:'Invalid Otp'}) 
         }
     }else{
-      res.status(404).json({success:false,msg:'User not found'})
+      res.status(404).json({success:"false",msg:'User not found'})
     }
 }
 
@@ -68,10 +68,10 @@ const resetPassword = async (req,res)=>{
     const email = req.body.email;
     try{
       await user.findOneAndUpdate({email:email},{password:newpass,otp:''})
-      res.status(200).send({success:true,msg:"Password updated sucessfully"})
+      res.status(200).send({success:"true",msg:"Password updated sucessfully"})
     }catch(e){
       console.log(e);
-      res.status(404).send({success:false,msg:"Some error occured"});
+      res.status(404).send({success:"false",msg:"Some error occured"});
     }
 }
 
