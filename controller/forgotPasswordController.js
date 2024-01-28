@@ -35,7 +35,11 @@ const forgotPasswordPostController = async (req,res)=>{
     if(foundUser.length>0){
         const otp = (Math.floor(Math.random()*9000))+1000;
         await user.findOneAndUpdate({email:email},{otp:otp});
-        sendVerificationEmail(email,otp);
+        try{
+          sendVerificationEmail(email,otp);
+        }catch(e){
+          console.log("Some error occurred ",e)
+        }
         return res.status(200).send({success:true,msg:"Please check you email"})
     }else{
         return res.status(401).send({success:false,msg:"User Not Found"});
