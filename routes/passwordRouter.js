@@ -1,8 +1,8 @@
 const express = require("express")
-const router = express.Router;
+const router = express.Router();
 const {passwordPutController} = require("../controller/passwordController")
 
 router
-   .put("/:email", passwordPutController)
+   .put("/", passwordPutController)
 
-module.exports = router
+module.exports = router;

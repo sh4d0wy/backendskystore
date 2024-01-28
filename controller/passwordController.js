@@ -1,8 +1,8 @@
 const user = require("../model/user")
 
 const passwordPutController = async(req,res)=>{
-    const email = req.params.email;
-    const foundUser = user.find({email:email});
+    const email = req.query.email;
+    const foundUser = await user.find({email:email});
     const givenPassword = req.body.oldpassword;
     if(foundUser[0].password == givenPassword){
         const newPassword = req.body.newpassword;
@@ -17,9 +17,11 @@ const passwordPutController = async(req,res)=>{
             })
         }
     }
-    res.status(401).json({
+    else{
+        res.status(401).json({
         "Status":"Unauthorised"
     })
+    }
 }
 
-module.exports = passwordPutController
+module.exports = {passwordPutController}
